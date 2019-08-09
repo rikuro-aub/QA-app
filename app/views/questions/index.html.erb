@@ -10,14 +10,20 @@
                 </tr>
             </thead>
             <tbody>
-                <% @questions.each do |qustion| %>
+                <% @questions.each do |question| %>
                     <tr>
-                        <td><%= qustion.id %></td>
-                        <td><%= qustion.title %></td>
-                        <td>[Edit][Delete]</td>
+                        <td><%= question.id %></td>
+                        <td><%= link_to question.title, question_path(question) %></td>
+                        <td>
+                            [<%= link_to 'Edit', edit_question_path(question) %>]
+                            [<%= link_to 'Delete', question_path(question), method: :delete, data: { confirm: 'Are you sure?' } %>]
+                        </td>
                     </tr>
                 <% end %>
             </tbody>
         </table>
+        <div>
+            <%= link_to 'New question', new_question_path %>
+        </div>
     </div>
 </div>
